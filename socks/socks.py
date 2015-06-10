@@ -239,14 +239,14 @@ class socksocket(_BaseSocket):
 
     def __init__(
         self, family=socket.AF_INET, type_=socket.SOCK_STREAM, proto=0, _sock=None,
-        routes=None,
+        routes=None, *args, **kw
     ):
 
         if type_ not in (socket.SOCK_STREAM, socket.SOCK_DGRAM):
             msg = "Socket type must be stream or datagram, not {!r}"
             raise ValueError(msg.format(type_))
 
-        _BaseSocket.__init__(self, family, type_, proto, _sock)
+        _BaseSocket.__init__(self, family, type_, proto, _sock, *args, **kw)
 
         if routes is None:
             routes = RoutingTable.from_default()
