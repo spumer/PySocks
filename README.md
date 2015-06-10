@@ -2,7 +2,7 @@
 
 This project result of merging two projects: [PySocks](https://github.com/Anorov/PySocks/) and [PySocksipyChain](https://github.com/pagekite/PySocksipyChain/)
 
-Project still development but right already key features:
+Project still development but already have key features:
 
 * Chain proxy
 * [requests](https://github.com/kennethreitz/requests) adapter
