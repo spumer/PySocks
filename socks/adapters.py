@@ -93,9 +93,6 @@ class ChainedProxyHTTPAdapter(HTTPAdapter):
         return url
 
     def get_connection(self, url, proxies=None):
-        if proxies:
-            raise NotImplementedError
-
         parsed = urllib.parse.urlparse(url)
         url = parsed.geturl()
         return self.poolmanager.connection_from_url(url)
