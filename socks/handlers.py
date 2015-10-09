@@ -42,7 +42,7 @@ class ProxyHTTPSConnection(ProxyHTTPConnection, http.client.HTTPSConnection):
         self.sock = ssl.wrap_socket(self.sock, self.key_file, self.cert_file)
 
 
-class ChainProxyHandler(urllib.request.HTTPHandler, urllib.request.HTTPSHandler):
+class ChainProxyHandler(urllib.request.HTTPHandler, urllib.request.HTTPSHandler, urllib.request.ProxyHandler):
     def __init__(self, chain=()):
         super().__init__()
 
