@@ -52,6 +52,8 @@ class ChainProxyHandler(urllib.request.HTTPHandler, urllib.request.HTTPSHandler,
         self._last_hop = last_hop  # cache last hop info for internal checks
 
     def is_chain_http_end(self):
+        if self._last_hop is None:
+            return False
         return self._last_hop.type == socks.PROXY_TYPE_HTTP
 
     def _create_http_conn(self, *args, **kw):
