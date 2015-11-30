@@ -17,13 +17,7 @@ from . import socks
 class ProxyHTTPConnection(http.client.HTTPConnection):
     def __init__(self, *args, chain=(), **kw):
         super().__init__(*args, **kw)
-
-        routes = socks.RoutingTable.from_default()
-
-        for hop in chain:
-            routes.append_proxy(self.host, *socks.parse_proxy(hop))
-
-        self.routes = routes
+        self.routes = socks.RoutingTable.from_addresses(chain, dst=self.host)
 
     def connect(self):
         sock = socks.socksocket(routes=self.routes)
