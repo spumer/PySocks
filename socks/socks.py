@@ -160,6 +160,13 @@ class RoutingTable:
         return route
 
     @classmethod
+    def from_addresses(cls, addresses, dst=DEFAULT_DST, parent_table=DEFAULT_ROUTING_TABLE):
+        obj = cls(table=parent_table)
+        for addr in addresses:
+            obj.append_proxy(dst, *parse_proxy(addr))
+        return obj
+
+    @classmethod
     def from_default(cls):
         return cls(table=DEFAULT_ROUTING_TABLE)
 
