@@ -115,9 +115,12 @@ DEFAULT_DST = '*'
 
 
 class RoutingTable:
-    def __init__(self, parent=None):
-        if parent is not None:
-            table = parent.copy()
+    def __init__(self, table=None):
+        if isinstance(table, RoutingTable):
+            table = table.table
+
+        if table is not None:
+            table = table.copy()
         else:
             table = {
                 DEFAULT_DST: [],
@@ -158,7 +161,7 @@ class RoutingTable:
 
     @classmethod
     def from_default(cls):
-        return cls(parent=DEFAULT_ROUTING_TABLE.table)
+        return cls(table=DEFAULT_ROUTING_TABLE)
 
 
 DEFAULT_ROUTING_TABLE = RoutingTable()
