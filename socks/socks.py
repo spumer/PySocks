@@ -112,6 +112,7 @@ class Proxy(
 
 
 DEFAULT_DST = '*'
+_USE_DEFAULT_ROUTING_TABLE = object()
 
 
 class RoutingTable:
@@ -160,7 +161,10 @@ class RoutingTable:
         return route
 
     @classmethod
-    def from_addresses(cls, addresses, dst=DEFAULT_DST, parent_table=DEFAULT_ROUTING_TABLE):
+    def from_addresses(cls, addresses, dst=DEFAULT_DST, parent_table=_USE_DEFAULT_ROUTING_TABLE):
+        if parent_table is _USE_DEFAULT_ROUTING_TABLE:
+            parent_table = DEFAULT_ROUTING_TABLE
+
         obj = cls(table=parent_table)
         for addr in addresses:
             obj.append_proxy(dst, *parse_proxy(addr))
