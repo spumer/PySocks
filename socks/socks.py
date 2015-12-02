@@ -162,6 +162,14 @@ class RoutingTable:
 
     @classmethod
     def from_addresses(cls, addresses, dst=DEFAULT_DST, parent_table=_USE_DEFAULT_ROUTING_TABLE):
+        """Construct table from raw addresses sequence
+        Note: for supported address formats see `parse_proxy`
+
+        :param addresses: iterable
+        :param dst: destination for constructed route, by default route will be used for any connection
+        :param parent_table: None for disable parenting. If `parent_table` not specified
+        `DEFAULT_ROUTING_TABLE` will be used
+        """
         if parent_table is _USE_DEFAULT_ROUTING_TABLE:
             parent_table = DEFAULT_ROUTING_TABLE
 
