@@ -1,3 +1,4 @@
+import copy
 import socket
 import struct
 import base64
@@ -121,7 +122,7 @@ class RoutingTable:
             table = table.table
 
         if table is not None:
-            table = table.copy()
+            table = copy.deepcopy(table)
         else:
             table = {
                 DEFAULT_DST: [],
