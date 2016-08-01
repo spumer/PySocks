@@ -62,6 +62,6 @@ New version naming is "<PySocks version>-chain.<major>.<minor>.<patch>
 
 """
 
-__version__ = "1.5.4-chain.0.2.2"
+__version__ = "1.5.4-chain.0.3.0"
 
 from .socks import *
