@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 from distutils.core import setup
 
-VERSION = "1.5.4"
+import socks
 
 setup(
     name = "PySocks",
-    version = VERSION,
+    version = socks.__version__,
     description = "A Python SOCKS client module. See https://github.com/Anorov/PySocks for more information.",
     url = "https://github.com/Anorov/PySocks",
     license = "BSD",

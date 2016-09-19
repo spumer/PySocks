@@ -365,6 +365,11 @@ class socksocket(_BaseSocket):
             # Check the chosen authentication method
 
             if chosen_auth[1:2] == b"\x02":
+                if not username or not password:
+                    raise SOCKS5AuthError(
+                        "Username or password can't be empty: username=%r, password=%r" % (username, password)
+                    )
+
                 # Okay, we need to perform a basic username/password
                 # authentication.
                 writer.write(b"\x01" + chr(len(username)).encode()
