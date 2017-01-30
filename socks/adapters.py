@@ -29,10 +29,14 @@ class ProxyHTTPSConnectionPool(HTTPSConnectionPool):
 
 
 class ProxyConnectionPool(PoolManager):
-    pool_classes_by_scheme = {
+    proxy_pool_classes_by_scheme = {
         'http': ProxyHTTPConnectionPool,
         'https': ProxyHTTPSConnectionPool,
     }
+
+    def __init__(self, *args, **kw):
+        super().__init__(*args, **kw)
+        self.pool_classes_by_scheme = self.proxy_pool_classes_by_scheme
 
     def _new_pool(self, scheme, host, port):
         pool_cls = self.pool_classes_by_scheme[scheme]
