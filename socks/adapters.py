@@ -47,6 +47,8 @@ class ProxyConnectionPool(PoolManager):
 
 
 class ChainedProxyHTTPAdapter(HTTPAdapter):
+    __attrs__ = ['_last_hop', 'chain'] + HTTPAdapter.__attrs__
+
     def __init__(self, *args, chain=(), **kw):
         last_hop = chain and socks.parse_proxy(chain[-1]) or None
 
