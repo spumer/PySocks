@@ -63,7 +63,7 @@ class ChainedProxyHTTPAdapter(HTTPAdapter):
 
         self.poolmanager = ProxyConnectionPool(
             num_pools=connections, maxsize=maxsize,
-            block=block, strict=True, chain=self.chain, **pool_kwargs
+            block=block, chain=self.chain, **pool_kwargs
         )
 
     def is_chain_http_end(self):
